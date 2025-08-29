@@ -1,1 +1,3 @@
-const String cachedMovies = 'CACHED_MOVIES';
+abstract class CacheKeys {
+  static const String cachePopularPeople = 'CACHED_MOVIES';
+}

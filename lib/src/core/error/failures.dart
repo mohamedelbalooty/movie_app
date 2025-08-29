@@ -33,3 +33,12 @@ class NetworkFailure extends Failure {
   @override
   List<Object> get props => [message];
 }
+
+class DataFailure extends Failure {
+  final String message;
+
+  const DataFailure({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}
