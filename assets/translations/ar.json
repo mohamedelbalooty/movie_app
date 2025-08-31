@@ -4,5 +4,9 @@
   "popular_people": "الشخصيات المشهورة",
   "retry": "أعد المحاولة",
   "profile": "الملف الشخصي",
-  "gallery": "المعرض"
+  "gallery": "المعرض",
+  "download_success": "تم التنزيل بنجاح",
+  "download_failed": "فشل التنزيل",
+  "downloading": "جاري التنزيل",
+  "download": "تنزيل"
 }

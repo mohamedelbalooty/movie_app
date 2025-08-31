@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:movie_app/src/core/constants/api_constants.dart';
-import 'package:movie_app/src/core/utils/app_colors.dart';
 import 'package:movie_app/src/features/popular_people/presentation/pages/show_image/cubit/show_image_cubit.dart';
 import 'package:movie_app/src/features/popular_people/presentation/widgets/fading_image_widget.dart';
+
+import 'widgets/download_button.dart';
 
 class ShowImagePage extends StatelessWidget {
   const ShowImagePage({super.key});
@@ -26,13 +26,9 @@ class ShowImagePage extends StatelessWidget {
           }
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColors.primaryColor,
-        onPressed: () {},
-        child: Icon(
-          Icons.download_outlined,
-          color: AppColors.whiteColor,
-          size: 24.sp,
+      floatingActionButton: DownloadButton(
+        imageUrl: context.select<ShowImageCubit, String>(
+          (cubit) => cubit.filePath,
         ),
       ),
     );
