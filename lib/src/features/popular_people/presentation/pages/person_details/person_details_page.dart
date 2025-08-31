@@ -1,0 +1,89 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movie_app/src/core/utils/app_colors.dart';
+import 'package:movie_app/src/features/popular_people/presentation/pages/person_details/cubit/person_details_cubit.dart';
+import 'package:movie_app/src/features/popular_people/presentation/pages/person_details/widgets/gallery_item_widget.dart';
+import 'package:movie_app/src/features/popular_people/presentation/pages/person_details/widgets/person_profile_data_widget.dart';
+import 'package:movie_app/src/features/popular_people/presentation/widgets/failure_widget.dart';
+import 'package:movie_app/src/features/popular_people/presentation/widgets/loading_widget.dart';
+
+class PersonDetailsPage extends StatelessWidget {
+  const PersonDetailsPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('profile'.tr())),
+      body: BlocBuilder<PersonDetailsCubit, PersonDetailsState>(
+        builder: (context, state) {
+          final cubit = PersonDetailsCubit.get(context);
+          switch (state) {
+            case PersonDetailsInitial():
+            case PersonDetailsLoading():
+              return const LoadingWidget();
+            case PersonDetailsLoaded():
+              return RefreshIndicator(
+                onRefresh: () async =>
+                    await Future(() => cubit.getPersonImages()),
+                child: CustomScrollView(
+                  slivers: [
+                    const SliverToBoxAdapter(child: SizedBox(height: 15)),
+                    SliverToBoxAdapter(
+                      child: PersonProfileDataWidget(person: cubit.person),
+                    ),
+                    const SliverToBoxAdapter(child: SizedBox(height: 15)),
+                    SliverPadding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      sliver: SliverToBoxAdapter(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Text(
+                              'gallery'.tr(),
+                              style: TextStyle(
+                                color: AppColors.grey900Color,
+                                fontSize: 14.sp,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SliverPadding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      sliver: SliverGrid(
+                        delegate: SliverChildBuilderDelegate((context, index) {
+                          if (state.images[index].filePath == null)
+                            return const SizedBox.shrink();
+                          return GalleryItemWidget(
+                            key: ValueKey('$index'),
+                            filePath: state.images[index].filePath!,
+                          );
+                        }, childCount: state.images.length),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 12,
+                              mainAxisSpacing: 10,
+                              childAspectRatio: 0.8,
+                            ),
+                      ),
+                    ),
+                    const SliverToBoxAdapter(child: SizedBox(height: 15)),
+                  ],
+                ),
+              );
+            case PersonDetailsFailed():
+              return FailureWidget(
+                message: state.message,
+                onPressed: () => cubit.getPersonImages(),
+              );
+          }
+        },
+      ),
+    );
+  }
+}
