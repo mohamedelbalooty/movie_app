@@ -1,3 +1,8 @@
 {
-  "language": "English"
+  "language": "English",
+  "known_for": "Known For",
+  "popular_people": "Popular People",
+  "retry": "Please try again",
+  "profile": "Profile Details",
+  "gallery": "Gallery"
 }

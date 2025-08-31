@@ -56,7 +56,7 @@ class MovieRepositoryImpl implements MovieRepository {
         return Left(DataFailure(message: e.toString()));
       }
     } else {
-      return Left(NetworkFailure(message: 'No internet connection !'));
+      return const Left(NetworkFailure(message: 'No internet connection !'));
     }
   }
 
@@ -74,7 +74,7 @@ class MovieRepositoryImpl implements MovieRepository {
         return Left(DataFailure(message: e.toString()));
       }
     } else {
-      return Left(NetworkFailure(message: 'No internet connection !'));
+      return const Left(NetworkFailure(message: 'No internet connection !'));
     }
   }
 }

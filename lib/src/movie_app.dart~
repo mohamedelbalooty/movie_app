@@ -19,13 +19,6 @@ class MovieApp extends StatelessWidget {
         headerBuilder: () => const MaterialClassicHeader(),
         footerBuilder: () =>
             const ClassicFooter(loadStyle: LoadStyle.ShowWhenLoading),
-        headerTriggerDistance: 10,
-        maxOverScrollExtent: 50,
-        maxUnderScrollExtent: 0,
-        enableScrollWhenRefreshCompleted: true,
-        enableLoadingWhenFailed: true,
-        hideFooterWhenNotFull: false,
-        enableBallisticLoad: true,
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,
           title: 'Movie App',

@@ -23,7 +23,7 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
     try {
       final response = await dio.get(
         ApiConstants.popularPerson,
-        queryParameters: {'api_key': ApiConstants.apiKey, 'page': page},
+        queryParameters: {'api_key': ApiConstants.apiKey, 'page': 1},
       );
       final data = response.data as Map<String, dynamic>;
       return Future.value(PeoplePageModel.fromMap(data));

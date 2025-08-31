@@ -59,7 +59,6 @@ class PersonDetailsPage extends StatelessWidget {
                           if (state.images[index].filePath == null)
                             return const SizedBox.shrink();
                           return GalleryItemWidget(
-                            key: ValueKey('$index'),
                             filePath: state.images[index].filePath!,
                           );
                         }, childCount: state.images.length),

@@ -1,0 +1,53 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:movie_app/src/core/utils/app_assets.dart';
+import 'package:movie_app/src/core/utils/app_colors.dart';
+
+class FailureWidget extends StatelessWidget {
+  const FailureWidget({
+    super.key,
+    required this.message,
+    required this.onPressed,
+  });
+
+  final String message;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(AppAssets.serverError, height: 150, width: 150),
+          const SizedBox(height: 8),
+          Text(
+            message,
+            style: TextStyle(
+              fontSize: 20.sp,
+              color: AppColors.grey900Color,
+              fontWeight: FontWeight.w500,
+              height: 1,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 2),
+          TextButton(
+            child: Text(
+              'retry'.tr(),
+              style: TextStyle(
+                fontSize: 16.sp,
+                color: AppColors.primaryColor,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            onPressed: onPressed,
+          ),
+        ],
+      ),
+    );
+  }
+}

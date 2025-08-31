@@ -1,3 +1,8 @@
 {
-  "language": "العربية"
+  "language": "العربية",
+  "known_for": "معروف عن",
+  "popular_people": "الشخصيات المشهورة",
+  "retry": "أعد المحاولة",
+  "profile": "الملف الشخصي",
+  "gallery": "المعرض"
 }

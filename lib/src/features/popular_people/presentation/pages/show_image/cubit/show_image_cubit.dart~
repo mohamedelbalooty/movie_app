@@ -1,8 +1,0 @@
-import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
-
-part 'show_image_state.dart';
-
-class ShowImageCubit extends Cubit<ShowImageState> {
-  ShowImageCubit() : super(ShowImageInitial());
-}
